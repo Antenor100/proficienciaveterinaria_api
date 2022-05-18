@@ -9,5 +9,4 @@ class ProficienciaveterinariaApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
