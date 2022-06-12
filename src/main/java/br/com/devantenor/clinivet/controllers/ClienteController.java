@@ -1,7 +1,7 @@
-package br.com.devantenor.proficienciaveterinaria.controllers;
+package br.com.devantenor.clinivet.controllers;
 
-import br.com.devantenor.proficienciaveterinaria.entities.Cliente;
-import br.com.devantenor.proficienciaveterinaria.repositories.ClienteRepository;
+import br.com.devantenor.clinivet.entities.Cliente;
+import br.com.devantenor.clinivet.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

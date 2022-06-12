@@ -1,4 +1,4 @@
-package br.com.devantenor.proficienciaveterinaria;
+package br.com.devantenor.clinivet;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

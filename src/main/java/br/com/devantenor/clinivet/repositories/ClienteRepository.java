@@ -1,6 +1,6 @@
-package br.com.devantenor.proficienciaveterinaria.repositories;
+package br.com.devantenor.clinivet.repositories;
 
-import br.com.devantenor.proficienciaveterinaria.entities.Cliente;
+import br.com.devantenor.clinivet.entities.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
