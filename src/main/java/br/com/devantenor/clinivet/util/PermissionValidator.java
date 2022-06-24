@@ -1,4 +1,6 @@
-package br.com.devantenor.clinivet.util.enums;
+package br.com.devantenor.clinivet.util;
+
+import br.com.devantenor.clinivet.util.enums.UserType;
 
 public class PermissionValidator {
     public static boolean canManageUser(UserType userType) {

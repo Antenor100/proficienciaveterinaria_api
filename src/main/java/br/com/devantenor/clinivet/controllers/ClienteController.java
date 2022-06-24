@@ -2,14 +2,14 @@ package br.com.devantenor.clinivet.controllers;
 
 import br.com.devantenor.clinivet.entities.Cliente;
 import br.com.devantenor.clinivet.repositories.ClienteRepository;
+import br.com.devantenor.clinivet.util.Constants;
+import br.com.devantenor.clinivet.util.EntityUtils;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController
@@ -30,5 +30,32 @@ public class ClienteController {
     public ResponseEntity<Cliente> findById(@PathVariable Long id) {
         Cliente cliente = clienteRepository.findById(id).get();
         return ResponseEntity.ok(cliente);
+    }
+
+    @PostMapping(value = "/insert")
+    @ApiOperation(value = "Insere um novo cliente")
+    public Cliente insert(@RequestBody Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
+
+    @PutMapping(value = "/edit/{id}")
+    @ApiOperation(value = "Edita um cliente existente")
+    public ResponseEntity<Cliente> edit(@PathVariable Long id, @RequestBody LinkedHashMap<String, Object> clienteMap) throws Exception {
+        Cliente clienteById = clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));
+
+        EntityUtils.editEntityClassByMap(clienteById, clienteMap, Cliente.class);
+
+        return ResponseEntity.ok(clienteRepository.save(clienteById));
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    @ApiOperation(value = "Deleta um cliente")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        Cliente clienteById = clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));
+
+        clienteRepository.delete(clienteById);
+        return ResponseEntity.ok(Constants.Messages.DELETADO_COM_SUCESSO);
     }
 }

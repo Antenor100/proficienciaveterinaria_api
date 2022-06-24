@@ -17,7 +17,7 @@ public class Usuario {
     private Long id;
 
     private String email;
-    private String encripted_password;
-    private UserType tipo_usuario;
-    private int quantidade_acessos;
+    private String encriptedPassword;
+    private UserType tipoUsuario;
+    private int quantidadeAcessos;
 }

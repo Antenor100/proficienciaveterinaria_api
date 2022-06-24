@@ -29,9 +29,9 @@ public class Animal {
 
     private int tipo;
 
-    private Date data_nascimento;
+    private Date dataNascimento;
 
-    private Date data_cadastro;
+    private Date dataCadastro;
 
     private int estado;
 
