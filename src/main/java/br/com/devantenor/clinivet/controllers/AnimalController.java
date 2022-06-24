@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/animais")
-@Api(value = "animais", description = "Endpoint's referentes a entidate Animal")
+@Api(value = "animais", description = "Endpoint's referentes a entidade Animal")
 public class AnimalController {
     @Autowired
     private AnimalRepository animalRepository;

@@ -4,6 +4,7 @@ import br.com.devantenor.clinivet.entities.Cliente;
 import br.com.devantenor.clinivet.repositories.ClienteRepository;
 import br.com.devantenor.clinivet.util.Constants;
 import br.com.devantenor.clinivet.util.EntityUtils;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/clientes")
+@Api(value = "clientes", description = "Endpoint's referentes a entidade Cliente")
 public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
