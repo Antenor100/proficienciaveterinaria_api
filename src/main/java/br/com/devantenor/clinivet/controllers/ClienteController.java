@@ -41,7 +41,7 @@ public class ClienteController {
     }
 
     @PutMapping(value = "/edit/{id}")
-    @ApiOperation(value = "Edita um cliente existente")
+    @ApiOperation(value = "Edita um cliente existente pelo seu ID")
     public ResponseEntity<Cliente> edit(@PathVariable Long id, @RequestBody LinkedHashMap<String, Object> clienteMap) throws Exception {
         Cliente clienteById = clienteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));
@@ -52,7 +52,7 @@ public class ClienteController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    @ApiOperation(value = "Deleta um cliente")
+    @ApiOperation(value = "Deleta um cliente pelo seu ID")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         Cliente clienteById = clienteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));

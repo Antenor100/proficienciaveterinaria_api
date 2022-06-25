@@ -48,7 +48,7 @@ public class AnimalController {
     }
 
     @PutMapping(value = "/edit/{id}")
-    @ApiOperation(value = "Edita um animal existente")
+    @ApiOperation(value = "Edita um animal existente pelo seu ID")
     public ResponseEntity<Animal> edit(@PathVariable Long id, @RequestBody LinkedHashMap<String, Object> animalMap) throws Exception {
         Animal animalById = animalRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));
@@ -59,7 +59,7 @@ public class AnimalController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    @ApiOperation(value = "Deleta um animal")
+    @ApiOperation(value = "Deleta um animal pelo seu ID")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         Animal animalById = animalRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));

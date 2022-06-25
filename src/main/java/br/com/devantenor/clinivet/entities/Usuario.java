@@ -16,8 +16,14 @@ public class Usuario {
     @Setter(AccessLevel.NONE)
     private Long id;
 
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String encriptedPassword;
+
+    @Column(nullable = false)
     private UserType tipoUsuario;
+
     private int quantidadeAcessos;
 }
