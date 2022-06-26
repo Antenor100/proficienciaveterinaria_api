@@ -51,10 +51,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagge‌​r-ui.html",
                         "/swagger-resources/configuration/security").permitAll();
 
-        //Configuração http.basic e stateless, para matar a sessão(Funcionar como API)
+        //Configuração que Libera o endpoint de login
+        http.authorizeRequests().and().authorizeRequests().antMatchers("/login", "/login/**").permitAll();
+
+        //Configuração http.basic e ALWAYS para sempre gerar a sessão para o usuário
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and().httpBasic()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
     }
 }

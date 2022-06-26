@@ -1,8 +1,8 @@
-INSERT INTO usuario (email, password, tipo_usuario, quantidade_acessos, estado, data_cadastro) VALUES
-('teste@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 0, 0, 1, '2022-06-11 22:21:10'),
-('teste2@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 1, 1, 1, '2022-06-11 22:21:10'),
-('teste3@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 2, 2, 1, '2022-06-11 22:21:10'),
-('teste4@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 2, 3, 0, '2022-06-11 22:21:10');
+INSERT INTO usuario (email, password, tipo_usuario, estado, data_cadastro) VALUES
+('teste@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 0, 1, '2022-06-11 22:21:10'),
+('teste2@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 1, 1, '2022-06-11 22:21:10'),
+('teste3@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 2, 1, '2022-06-11 22:21:10'),
+('teste4@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 2, 0, '2022-06-11 22:21:10');
 
 INSERT INTO cliente (cpf, nome, apelido, telefone, usuario) VALUES
 ('41047581833', 'Antenor Manoel', 'Antenor', '34998096296', 1),

@@ -2,9 +2,9 @@ package br.com.devantenor.clinivet.controllers;
 
 import br.com.devantenor.clinivet.entities.Usuario;
 import br.com.devantenor.clinivet.repositories.UsuarioRepository;
-import br.com.devantenor.clinivet.services.UsuarioService;
 import br.com.devantenor.clinivet.util.Constants;
 import br.com.devantenor.clinivet.util.EntityUtils;
+import br.com.devantenor.clinivet.util.PasswordUtils;
 import br.com.devantenor.clinivet.util.enums.Estado;
 import br.com.devantenor.clinivet.util.enums.UserType;
 import com.google.gson.Gson;
@@ -24,8 +24,6 @@ import java.util.*;
 public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    private UsuarioService usuarioService = new UsuarioService();
 
     @GetMapping
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
@@ -80,7 +78,7 @@ public class UsuarioController {
         usuario.setDataCadastro(new Date());
         usuario.setEstado(Estado.ATIVO);
 
-        usuarioService.encryptUserPassword(usuario);
+        usuario.setPassword(PasswordUtils.encryptPassword(usuario.getPassword()));
 
         return usuarioRepository.save(usuario);
     }
@@ -94,7 +92,7 @@ public class UsuarioController {
 
         EntityUtils.editEntityClassByMap(usuarioById, usuarioMap, Usuario.class);
 
-        usuarioById = usuarioService.encryptUserPassword(usuarioById);
+        usuarioById.setPassword(PasswordUtils.encryptPassword(usuarioById.getPassword()));
 
         return ResponseEntity.ok(usuarioRepository.save(usuarioById));
     }

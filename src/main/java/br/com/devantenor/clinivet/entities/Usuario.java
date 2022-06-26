@@ -37,5 +37,9 @@ public class Usuario {
     @Enumerated(EnumType.ORDINAL)
     private UserType tipoUsuario;
 
-    private int quantidadeAcessos;
+    private Integer quantidadeAcessos;
+
+    private Integer quantidadeAcessosIncorretos;
+
+    private Integer quantidadeSubstituicaoSenha;
 }
