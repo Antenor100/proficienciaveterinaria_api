@@ -32,14 +32,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //Configuração para habilitar o H2
+        //Configuração para habilitar o H2, NÃO deve ir para produção!
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .and().csrf().disable()
                 .headers().frameOptions().disable();
 
-        //Configuração http.basic e stateless, para matar a sessão
+        //Configuração para habilitar o Swagger, NÃO deve ir para produção!
+        http.authorizeRequests()
+                .antMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**",
+                        "/swagger-resources/configuration/ui",
+                        "/swagge‌​r-ui.html",
+                        "/swagger-resources/configuration/security").permitAll();
+
+        //Configuração http.basic e stateless, para matar a sessão(Funcionar como API)
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and().httpBasic()

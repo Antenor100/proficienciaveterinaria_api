@@ -34,9 +34,9 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    @ApiOperation(value = "Retorna um cliente pelo seu ID")
     @GetMapping(value = "/{id}")
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "', '" + UserType.RoleNames.CLIENTE + "')")
+    @ApiOperation(value = "Retorna um cliente pelo seu ID")
     public ResponseEntity<Cliente> findById(@PathVariable Long id) {
         if (authenticationService.loggedUserHasRoleAccess(UserType.VETERINARIO.roleName)
                 || authenticationService.loggedUserHasRoleAccess(UserType.ATENDENTE.roleName)
