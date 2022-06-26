@@ -5,6 +5,7 @@ import br.com.devantenor.clinivet.repositories.AnimalRepository;
 import br.com.devantenor.clinivet.services.AuthenticationService;
 import br.com.devantenor.clinivet.util.Constants;
 import br.com.devantenor.clinivet.util.EntityUtils;
+import br.com.devantenor.clinivet.util.enums.Estado;
 import br.com.devantenor.clinivet.util.enums.UserType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -71,6 +72,8 @@ public class AnimalController {
 
         EntityUtils.editEntityClassByMap(animalById, animalMap, Animal.class);
 
+        animalById.setEstado(Estado.ATIVO);
+
         return ResponseEntity.ok(animalRepository.save(animalById));
     }
 
@@ -81,7 +84,10 @@ public class AnimalController {
         Animal animalById = animalRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));
 
-        animalRepository.delete(animalById);
-        return ResponseEntity.ok(Constants.Messages.DELETADO_COM_SUCESSO);
+        animalById.setEstado(Estado.INATIVO);
+
+        animalRepository.save(animalById);
+
+        return ResponseEntity.ok(Constants.Messages.DESATIVADO_COM_SUCESSO);
     }
 }

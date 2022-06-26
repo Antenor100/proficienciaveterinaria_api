@@ -5,7 +5,10 @@ import br.com.devantenor.clinivet.repositories.UsuarioRepository;
 import br.com.devantenor.clinivet.services.UsuarioService;
 import br.com.devantenor.clinivet.util.Constants;
 import br.com.devantenor.clinivet.util.EntityUtils;
+import br.com.devantenor.clinivet.util.enums.Estado;
 import br.com.devantenor.clinivet.util.enums.UserType;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +16,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/usuarios")
@@ -34,11 +39,24 @@ public class UsuarioController {
     }
 
     @GetMapping(value = "/{id}")
-    @ApiOperation(value = "Retorna um usuário pelo seu ID")
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
+    @ApiOperation(value = "Retorna um usuário pelo seu ID")
     public ResponseEntity<Usuario> findById(@PathVariable Long id) {
         Usuario usuario = usuarioRepository.findById(id).get();
         return ResponseEntity.ok(usuario);
+    }
+
+    @GetMapping(value = "/email/{email}")
+    @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
+    @ApiOperation(value = "Verifica se existe um usuário com o email especificado.")
+    public ResponseEntity<Map<String, Object>> findByEmail(@PathVariable String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+
+        JsonObject resposta = new JsonObject();
+        resposta.addProperty("email", email);
+        resposta.addProperty("emailEmUso", usuario != null);
+
+        return ResponseEntity.ok(new Gson().fromJson(resposta, HashMap.class));
     }
 
     @PutMapping(value = "/edit/{id}")
@@ -63,6 +81,8 @@ public class UsuarioController {
             throw new Error("Já existe um usuário cadastrado com este email!");
         }
 
+        usuario.setEstado(Estado.ATIVO);
+
         usuarioService.encryptUserPassword(usuario);
 
         return usuarioRepository.save(usuario);
@@ -75,7 +95,10 @@ public class UsuarioController {
         Usuario usuarioById = usuarioRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));
 
-        usuarioRepository.delete(usuarioById);
-        return ResponseEntity.ok(Constants.Messages.DELETADO_COM_SUCESSO);
+        usuarioById.setEstado(Estado.INATIVO);
+
+        usuarioRepository.save(usuarioById);
+
+        return ResponseEntity.ok(Constants.Messages.DESATIVADO_COM_SUCESSO);
     }
 }

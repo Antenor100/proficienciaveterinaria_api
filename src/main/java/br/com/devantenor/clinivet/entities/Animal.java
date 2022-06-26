@@ -1,5 +1,6 @@
 package br.com.devantenor.clinivet.entities;
 
+import br.com.devantenor.clinivet.util.enums.Estado;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -33,7 +34,9 @@ public class Animal {
 
     private Date dataCadastro;
 
-    private int estado;
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Estado estado;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente", referencedColumnName = "id")

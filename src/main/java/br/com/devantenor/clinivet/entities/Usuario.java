@@ -1,5 +1,6 @@
 package br.com.devantenor.clinivet.entities;
 
+import br.com.devantenor.clinivet.util.enums.Estado;
 import br.com.devantenor.clinivet.util.enums.UserType;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -17,13 +18,17 @@ public class Usuario {
     private Long id;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Estado estado;
+
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private UserType tipoUsuario;
 
     private int quantidadeAcessos;
