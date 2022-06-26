@@ -16,10 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/usuarios")
@@ -32,9 +29,9 @@ public class UsuarioController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
-    @ApiOperation(value = "Retorna uma lista com todos os usuários")
-    public ResponseEntity<List<Usuario>> findAll() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
+    @ApiOperation(value = "Retorna uma lista com todos os usuários ativos")
+    public ResponseEntity<List<Usuario>> findAllActives() {
+        List<Usuario> usuarios = usuarioRepository.findAllAtivos();
         return ResponseEntity.ok(usuarios);
     }
 
@@ -49,7 +46,20 @@ public class UsuarioController {
     @GetMapping(value = "/email/{email}")
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
     @ApiOperation(value = "Verifica se existe um usuário com o email especificado.")
-    public ResponseEntity<Map<String, Object>> findByEmail(@PathVariable String email) {
+    public ResponseEntity<Usuario> findByEmail(@PathVariable String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+
+        if (usuario == null) {
+            throw new IllegalArgumentException("Não existe um usuário cadastrado com esse email!");
+        }
+
+        return ResponseEntity.ok(usuario);
+    }
+
+    @GetMapping(value = "/email/verify/{email}")
+    @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
+    @ApiOperation(value = "Verifica se existe um usuário com o email especificado.")
+    public ResponseEntity<Map<String, Object>> verifyIfExistsByEmail(@PathVariable String email) {
         Usuario usuario = usuarioRepository.findByEmail(email);
 
         JsonObject resposta = new JsonObject();
@@ -57,6 +67,22 @@ public class UsuarioController {
         resposta.addProperty("emailEmUso", usuario != null);
 
         return ResponseEntity.ok(new Gson().fromJson(resposta, HashMap.class));
+    }
+
+    @PostMapping(value = "/insert")
+    @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
+    @ApiOperation(value = "Insere um novo usuário")
+    public Usuario insert(@RequestBody Usuario usuario) {
+        if(usuarioRepository.findByEmail(usuario.getEmail()) != null) {
+            throw new Error("Já existe um usuário cadastrado com este email!");
+        }
+
+        usuario.setDataCadastro(new Date());
+        usuario.setEstado(Estado.ATIVO);
+
+        usuarioService.encryptUserPassword(usuario);
+
+        return usuarioRepository.save(usuario);
     }
 
     @PutMapping(value = "/edit/{id}")
@@ -71,21 +97,6 @@ public class UsuarioController {
         usuarioById = usuarioService.encryptUserPassword(usuarioById);
 
         return ResponseEntity.ok(usuarioRepository.save(usuarioById));
-    }
-
-    @PostMapping(value = "/insert")
-    @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
-    @ApiOperation(value = "Insere um novo usuário")
-    public Usuario insert(@RequestBody Usuario usuario) {
-        if(usuarioRepository.findByEmail(usuario.getEmail()) != null) {
-            throw new Error("Já existe um usuário cadastrado com este email!");
-        }
-
-        usuario.setEstado(Estado.ATIVO);
-
-        usuarioService.encryptUserPassword(usuario);
-
-        return usuarioRepository.save(usuario);
     }
 
     @PatchMapping(value = "/inactive/{id}")

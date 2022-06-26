@@ -1,6 +1,8 @@
 package br.com.devantenor.clinivet.entities;
 
+import br.com.devantenor.clinivet.util.enums.AnimalType;
 import br.com.devantenor.clinivet.util.enums.Estado;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -28,10 +30,14 @@ public class Animal {
 
     private double peso;
 
-    private int tipo;
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private AnimalType tipo;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date dataNascimento;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date dataCadastro;
 
     @Column(nullable = false)
