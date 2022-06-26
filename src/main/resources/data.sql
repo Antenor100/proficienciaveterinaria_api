@@ -1,12 +1,12 @@
-INSERT INTO usuario (id, email, encripted_password, tipo_usuario, quantidade_acessos) VALUES
-(1, 'teste@gmail.com', 'fasefaes454646', 0, 0),
-(2, 'teste2@gmail.com', 'ljklhjkfasefaes454646', 1, 1),
-(3, 'teste3@gmail.com', 'nmvbmnbvfasefaes454646', 2, 2);
+INSERT INTO usuario (email, password, tipo_usuario, quantidade_acessos) VALUES
+('teste@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 'VETERINARIO', 0),
+('teste2@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 'ATENDENTE', 1),
+('teste3@gmail.com', '$2a$12$eanl.MjGcHiNebmhCsrJouTXkBBG6knigQn235dMQhy/fTH9k1b6u', 'CLIENTE', 2);
 
-INSERT INTO cliente (id, cpf, nome, apelido, telefone, usuario) VALUES
-(1, '41047581833', 'Antenor Manoel', 'Antenor', '34998096296', 1),
-(2, '74125441584', 'Gabriela Souza', 'Gabriela', '34996587458', 2),
-(3, '85474154784', 'Ricardo Carlos', 'Ricardo', '34985478741', 3);
+INSERT INTO cliente (cpf, nome, apelido, telefone, usuario) VALUES
+('41047581833', 'Antenor Manoel', 'Antenor', '34998096296', 1),
+('74125441584', 'Gabriela Souza', 'Gabriela', '34996587458', 2),
+('85474154784', 'Ricardo Carlos', 'Ricardo', '34985478741', 3);
 
 INSERT INTO animal (nome, foto, raca, pelagem, peso, tipo, data_nascimento, data_cadastro, estado, cliente) VALUES
 ('pitoco', 'pitoco.png', 'doberman', 'preta', 15.2, 1, '2015-06-15 10:22:45', '2022-06-11 22:21:10', 2, 1),

@@ -20,9 +20,10 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
-    private String encriptedPassword;
+    private String password;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private UserType tipoUsuario;
 
     private int quantidadeAcessos;
