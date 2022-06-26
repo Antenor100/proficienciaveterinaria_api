@@ -18,7 +18,7 @@ public class JavaMailComponent {
     @Value("${costumer.email.password}")
     private String password;
 
-    public void sendEmailByGmail(String targedEmail, String assunto, String conteudo) {
+    public void sendEmailByMailTrap(String targedEmail, String assunto, String conteudo) {
         Properties props = new Properties();
 
         //Parâmetros de conexão com servidor Gmail

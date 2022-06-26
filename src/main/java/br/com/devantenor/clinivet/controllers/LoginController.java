@@ -89,7 +89,7 @@ public class LoginController {
             usuario.setQuantidadeSubstituicaoSenha(NumberUtils.getIntegerOrZero(usuario.getQuantidadeSubstituicaoSenha()) + 1);
             usuarioRepository.save(usuario);
 
-            javaMailComponent.sendEmailByGmail(email, "Troca de senha automática - clinivet", "Sua senha foi alterada para " + senhaAleatoria);
+            javaMailComponent.sendEmailByMailTrap(email, "Troca de senha automática - clinivet", "Sua senha foi alterada para " + senhaAleatoria);
 
             return ResponseEntity.ok("Foi enviado um email para " + email.substring(0, 7) + "... com sua nova senha!");
         }
