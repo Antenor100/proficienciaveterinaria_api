@@ -77,9 +77,9 @@ public class AnimalController {
         return ResponseEntity.ok(animalRepository.save(animalById));
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @PatchMapping(value = "/inactive/{id}")
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "')")
-    @ApiOperation(value = "Deleta um animal pelo seu ID")
+    @ApiOperation(value = "Inativa um animal pelo seu ID")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         Animal animalById = animalRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));

@@ -88,9 +88,9 @@ public class UsuarioController {
         return usuarioRepository.save(usuario);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @PatchMapping(value = "/inactive/{id}")
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.ATENDENTE + "')")
-    @ApiOperation(value = "Deleta um usuário pelo seu ID")
+    @ApiOperation(value = "Inativa um usuário pelo seu ID")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         Usuario usuarioById = usuarioRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(Constants.Messages.ID_NAO_ENCONTRADO));
