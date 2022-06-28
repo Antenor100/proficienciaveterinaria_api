@@ -1,0 +1,1664 @@
+{
+	"info": {
+		"_postman_id": "a5e3bfc2-fe4b-4192-8174-20dfee665d40",
+		"name": "proficienciaveterinaria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13312793"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "authenticateUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"teste@gmail.com\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgotPassword",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"oliveiragabriela18@icloud.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login/forgotPassword",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login",
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Animal",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/animais",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"animais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/animais/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"animais",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllByClienteId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/animais/cliente/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"animais",
+								"cliente",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllByClienteOrAnimalName",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/animais/filtro/nomeclienteanimal/carlos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"animais",
+								"filtro",
+								"nomeclienteanimal",
+								"carlos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"lagarto\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/animais/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"animais",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"lagartao\",\n    \"tipo\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/animais/edit/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"animais",
+								"edit",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inactive",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/animais/inactive/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"animais",
+								"inactive",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "findAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:8080/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/clientes/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"12345678955\",\n    \"nome\": \"Clebin\",\n    \"apelido\": \"Cleb\",\n    \"telefone\": \"34984576528\",\n    \"endereco\": {\n        \"rua\":\"Rua da liberdade\",\n        \"numero\":4568,\n        \"bairro\":\"Patrimonio\",\n        \"complemento\":\"Casa verde\",\n        \"cidade\":\"Jaguariuna\",\n        \"estado\":\"SP\",\n        \"cep\":\"13740145\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/clientes/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"cleber\",\n    \"telefone\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/clientes/edit/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"edit",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/clientes/delete/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Remedio",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/remedios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"remedios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/remedios/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"remedios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"trembolona\",\n    \"laboratorio\": \"ilegal\",\n    \"dataValidade\": \"2022-10-27 00:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/remedios/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"remedios",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"durateston\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/remedios/edit/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"remedios",
+								"edit",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/remedios/delete/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"remedios",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Receita",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/receitas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"receitas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/receitas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"receitas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"observacoes\": \"Remédios para uso em atletas profissionais\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/receitas/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"receitas",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"durateston\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/receitas/edit/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"receitas",
+								"edit",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/receitas/delete/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"receitas",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Anamnese",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/anamneses",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"anamneses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/anamneses/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"anamneses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"problemaSistemaDigestivo\":\"Positivo, com infecção\",\n    \"problemaSistemaUroGenital\":\"Negativo\",\n    \"problemaSistemaCardioRespiratorio\":\"Negativo\",\n    \"problemaSistemaNeurologico\":\"Negativo\",\n    \"problemaSistemaLocomotor\":\"Negativo\",\n    \"problemaPele\":\"Negativo\",\n    \"problemaOlhos\":\"Negativo\",\n    \"problemaOuvido\":\"Negativo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/anamneses/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"anamneses",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"problemaSistemaDigestivo\":\"Positivo, com infecção\",\n    \"problemaSistemaUroGenital\":\"Positivo\",\n    \"problemaSistemaCardioRespiratorio\":\"Negativo\",\n    \"problemaSistemaNeurologico\":\"Negativo\",\n    \"problemaSistemaLocomotor\":\"Negativo\",\n    \"problemaPele\":\"Negativo\",\n    \"problemaOlhos\":\"Negativo\",\n    \"problemaOuvido\":\"Negativo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/anamneses/edit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"anamneses",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/anamneses/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"anamneses",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Consulta",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/consultas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/consultas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"observacoes\":\"olhar com a dra claudia\",\n    \"queixa\":\"dor na pata\",\n    \"historico\":\"nenhum\",\n    \"anamnese\": {\n        \"id\": 1,\n        \"problemaSistemaDigestivo\": \"Positivo, com infecção\",\n        \"problemaSistemaUroGenital\": \"Negativo\",\n        \"problemaSistemaCardioRespiratorio\": \"Negativo\",\n        \"problemaSistemaNeurologico\": \"Negativo\",\n        \"problemaSistemaLocomotor\": \"Negativo\",\n        \"problemaPele\": \"Negativo\",\n        \"problemaOlhos\": \"Negativo\",\n        \"problemaOuvido\": \"Negativo\"\n    },\n    \"receita\": {\n        \"id\": 1,\n        \"observacoes\": \"Remédios para uso em atletas profissionais\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/consultas/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultas",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"observacoes\":\"olhar com a dra claudia\",\n    \"queixa\":\"dor na pata\",\n    \"historico\":\"nenhum\",\n    \"data\": \"2022-10-27 00:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/consultas/edit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultas",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/consultas/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consultas",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByEmail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios/email/teste@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"email",
+								"teste@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyIfExistsByEmail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios/email/verify/teste@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"email",
+								"verify",
+								"teste@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"oliveiragabriela18@icloud.com\",\n    \"password\": \"17120318\",\n    \"tipoUsuario\": \"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"teste4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios/edit/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"edit",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inactive",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/usuarios/inactive/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"inactive",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ItemReceita",
+			"item": [
+				{
+					"name": "findAllByReceitaId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/itensReceita/receita/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"itensReceita",
+								"receita",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantidade\": 1,\n    \"dose\": 2.5,\n    \"receita\": {\n        \"id\": 1,\n        \"observacoes\": \"Remédios para uso em atletas profissionais\"\n    },\n    \"remedio\": {\n        \"id\": 1,\n        \"nome\": \"trembolona\",\n        \"laboratorio\": \"ilegal\",\n        \"dataValidade\": \"2022-10-27 00:00:00\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/itensReceita/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"itensReceita",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantidade\": 2,\n    \"dose\": 3.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/itensReceita/edit/remedio/2/receita/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"itensReceita",
+								"edit",
+								"remedio",
+								"2",
+								"receita",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/itensReceita/delete/remedio/2/receita/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"itensReceita",
+								"delete",
+								"remedio",
+								"2",
+								"receita",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Atendente",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/atendentes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendentes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/atendentes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendentes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"Matheus\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/atendentes/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendentes",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"Matheus Mathias\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/atendentes/edit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendentes",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/atendentes/delete/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendentes",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Exame",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/exames",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"exames"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/exames/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"exames",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hemograma\":\"true\",\n    \"colesterol\":\"true\",\n    \"fosforo\":\"true\",\n    \"calcio\":\"true\",\n    \"glicose\":\"true\",\n    \"magnesio\":\"true\",\n    \"ureia\":\"true\",\n    \"potassio\":\"true\",\n    \"ultrasonografia\":\"true\",\n    \"radiografia\":\"true\",\n    \"data\":\"2022-06-28\",\n    \"animal\":{\n        \"id\": 1,\n        \"nome\": \"pitoco\",\n        \"foto\": \"pitoco.png\",\n        \"raca\": \"doberman\",\n        \"pelagem\": \"preta\",\n        \"peso\": 15.2,\n        \"tipo\": \"CACHORRO\",\n        \"dataNascimento\": \"2015-06-15 13:22:45\",\n        \"dataCadastro\": \"2022-06-12 01:21:10\",\n        \"estado\": \"ATIVO\"\n    },\n    \"atendente\": {\n        \"id\":1,\n        \"nome\":\"Matheus\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/exames/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"exames",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hemograma\":true,\n    \"colesterol\":false,\n    \"fosforo\":true,\n    \"calcio\":false,\n    \"glicose\":true,\n    \"magnesio\":false,\n    \"ureia\":true,\n    \"potassio\":false,\n    \"ultrasonografia\":true,\n    \"radiografia\":false,\n    \"data\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/exames/edit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"exames",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/exames/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"exames",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
