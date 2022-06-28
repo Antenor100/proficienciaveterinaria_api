@@ -1,6 +1,9 @@
 package br.com.devantenor.clinivet.util;
 
 import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 
 public class EntityUtils {
@@ -11,9 +14,28 @@ public class EntityUtils {
             Method setter = findMethodByName("set" + key.substring(0, 1).toUpperCase() + key.substring(1), classe);
 
             if (setter != null) {
-                setter.invoke(targetObj, map.get(key));
+                Object parameterValue = map.get(key);
+
+                Date parsedDate = tryConvertDataForDateSetter(parameterValue, setter);
+
+                if (parsedDate != null) {
+                    setter.invoke(targetObj, parsedDate);
+                } else {
+                    setter.invoke(targetObj, parameterValue);
+                }
             }
         }
+    }
+
+    private static Date tryConvertDataForDateSetter(Object data, Method setter) {
+        try {
+            Date parsedDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(data.toString());
+            return parsedDate;
+
+        } catch (ParseException ex) {
+            //Ignored
+        }
+        return null;
     }
 
     public static Method findMethodByName(String name, Class classe) {

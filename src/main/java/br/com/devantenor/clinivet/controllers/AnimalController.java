@@ -43,6 +43,14 @@ public class AnimalController {
         return ResponseEntity.ok(animal);
     }
 
+    @GetMapping(value = "/filtro/nomeclienteanimal/{name}")
+    @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "')")
+    @ApiOperation(value = "Retorna uma lista de animais ao informar uma String e compara-lá ao nome dos animais ou clientes")
+    public ResponseEntity<List<Animal>> findAllByClienteOrAnimalName(@PathVariable String name) {
+        List<Animal> animais = animalRepository.findAllByClienteOrAnimalName(name);
+        return ResponseEntity.ok(animais);
+    }
+
     @GetMapping(value = "/cliente/{id}")
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "', '" + UserType.RoleNames.CLIENTE + "')")
     @ApiOperation(value = "Retorna uma lista de animais pelo ID do cliente")

@@ -1,26 +1,28 @@
 package br.com.devantenor.clinivet.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "remedio")
+@Table(name = "itemReceita")
 @Data
-public class Remedio {
+public class ItemReceita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    private String nome;
+    private int quantidade;
 
-    private String laboratorio;
+    private double dose;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date dataValidade;
+    @ManyToOne
+    @JoinColumn(name = "receitaId", nullable = false)
+    private Receita receita;
+
+    @OneToOne
+    private Remedio remedio;
 }

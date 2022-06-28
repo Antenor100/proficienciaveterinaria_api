@@ -7,17 +7,13 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Atendente")
+@Table(name = "receita")
 @Data
-public class Atendente {
+public class Receita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    private String nome;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario", referencedColumnName = "id")
-    private Usuario usuario;
+    private String observacoes;
 }
