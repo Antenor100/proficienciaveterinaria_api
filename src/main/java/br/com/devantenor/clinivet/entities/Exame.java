@@ -37,4 +37,10 @@ public class Exame {
     private String radiografia;
 
     private Date data;
+
+    @OneToOne
+    private Animal animal;
+
+    @OneToOne
+    private Atendente atendente;
 }

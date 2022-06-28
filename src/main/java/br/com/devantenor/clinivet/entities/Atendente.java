@@ -7,25 +7,17 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "endereco")
+@Table(name = "atendente")
 @Data
-public class Endereco {
+public class Atendente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    private String rua;
+    private String nome;
 
-    private Integer numero;
-
-    private String bairro;
-
-    private String complemento;
-
-    private String cidade;
-
-    private String estado;
-
-    private String cep;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario", referencedColumnName = "id")
+    private Usuario usuario;
 }

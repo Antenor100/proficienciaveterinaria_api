@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class ConsultaController {
     @PreAuthorize("hasAnyRole('" + UserType.RoleNames.VETERINARIO + "')")
     @ApiOperation(value = "Insere uma nova consulta")
     public Consulta insert(@RequestBody Consulta consulta) {
+        consulta.setData(new Date());
         return consultaRepository.save(consulta);
     }
 
